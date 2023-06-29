@@ -4,6 +4,8 @@ var f2 = document.getElementById("admin-form");
 var f3 = document.getElementById("signup-form");
 var f4 = document.getElementById("signup-form-admin");
 
+
+
 var ad = 0;
 // Get the modal
 var modal = document.getElementById("modal");

@@ -49,7 +49,7 @@ const verifyLogin = async(req,res)=>{
         const pass = req.body.pass;
         const UserData = await userModel.findOne({email:email});
         if(UserData){
-            console.log(UserData.email,UserData.pass);
+           
             if(pass==UserData.pass){
                 req.session.user_id= UserData._id;
                 res.redirect('secondpage_admin');
