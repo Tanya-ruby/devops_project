@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 const path = require('path')
-mongoose.connect("mongodb+srv://amshucs21:amshuamshu@webdev.kcky73w.mongodb.net/webdev?retryWrites=true&w=majority");
+mongoose.connect(add your connection string);
 
 const express = require('express')
 const app = express();
