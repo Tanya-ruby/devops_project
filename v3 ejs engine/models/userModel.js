@@ -11,4 +11,3 @@ isAdmin:{type:Boolean,required:true}
 });
 
 module.exports = mongoose.model('Users',usersSchema);
-

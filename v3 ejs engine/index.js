@@ -1,7 +1,6 @@
 const mongoose = require('mongoose');
 const path = require('path')
-
-const username = "devopsprojectbmsce"; //create shared username for db
+const username = "devopsprojectbmsce"; //create shared username for database
 const password = "devops_project";
 const cluster = "devopsproject.m86dhzw";
 const dbname = "devops_project";

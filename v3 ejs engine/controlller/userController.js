@@ -31,7 +31,7 @@ const insertUser = async(req,res)=>{
             section:req.body.section,
             usn:req.body.usn,
             password:req.body.pass,
-            isAdmin:true //amshu change this when you add admin functionality
+            isAdmin:true //amshu change this when you add admin functionality , always true
         }
        
         ); const userData= await User.save();
