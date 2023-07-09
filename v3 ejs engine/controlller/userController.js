@@ -30,7 +30,8 @@ const insertUser = async(req,res)=>{
             email:req.body.email,
             section:req.body.section,
             usn:req.body.usn,
-            pass:req.body.pass
+            password:req.body.pass,
+            isAdmin:true //amshu change this when you add admin functionality
         }
        
         ); const userData= await User.save();
@@ -49,8 +50,8 @@ const verifyLogin = async(req,res)=>{
         const pass = req.body.pass;
         const UserData = await userModel.findOne({email:email});
         if(UserData){
-            console.log(UserData.email,UserData.pass);
-            if(pass==UserData.pass){
+            console.log(UserData.email,UserData.password);
+            if(pass === UserData.password){
                 req.session.user_id= UserData._id;
                 res.redirect('secondpage_admin');
                 // res.render('secondpage_admin',{name:UserData.name,usn:UserData.usn,section:UserData.section});
@@ -60,7 +61,7 @@ const verifyLogin = async(req,res)=>{
             }
        }
         else {
-            res.render('index',{message:"password or email is incorrect"});
+            res.render('index',{message:"user not found , please sign up"});
         }
     } catch (error) {
         console.log(error);

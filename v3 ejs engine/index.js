@@ -1,6 +1,18 @@
 const mongoose = require('mongoose');
 const path = require('path')
-mongoose.connect(add your connection string);
+
+const username = "devopsprojectbmsce"; //create shared username for db
+const password = "devops_project";
+const cluster = "devopsproject.m86dhzw";
+const dbname = "devops_project";
+
+mongoose.connect(
+  `mongodb+srv://${username}:${password}@${cluster}.mongodb.net/${dbname}?retryWrites=true&w=majority`, 
+  {
+    useNewUrlParser: true,
+    useUnifiedTopology: true
+  }
+);
 
 const express = require('express')
 const app = express();
