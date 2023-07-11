@@ -40,7 +40,20 @@
       </nav>
       </div>
       <% if(typeof message != 'undefined') { %>
-        <h2 style="background-color: rgb(230, 89, 89);color: red;"><%= message  %></h2>
+        <div class="alert alert-danger" role="alert" onclick="hideam()">
+          <strong><%= message %> !!!</strong>  click to close
+          <!-- <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button> -->
+        </div>
+        <script>
+          function hideam(){
+            const iteam=document.getElementsByClassName("alert alert-danger")[0];
+            iteam.style.display ="none";
+          }
+        </script>
+         
+        
         <% } %>
   </section>
 
@@ -115,7 +128,58 @@
             <input type="checkbox" id="show-password2">
           </div>
           <input type="submit" value="Sign Up" id="signup-btn">
+          <div id="error-message" style="color: red;"></div>
         </form>
+        <script>
+          // Form submission event listener
+          document.getElementById('signup-form').addEventListener('submit', function (event) {
+            event.preventDefault(); // Prevent form submission
+        
+            // Clear error message
+            document.getElementById('error-message').textContent = '';
+            // Validate email
+            var email = document.getElementById('email1').value;
+            var isEmailValid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+
+            if (!isEmailValid) {
+              document.getElementById('error-message').textContent =
+                'Please enter a valid email address.';
+              return;
+            }
+        
+            // Validate password
+            var password = document.getElementById('password1').value;
+            var confirmPassword = document.getElementById('password2').value;
+        
+            var hasLetter = /[a-zA-Z]/.test(password);
+            var hasCapitalLetter = /[A-Z]/.test(password);
+            var isEightCharsLong = password.length >= 8;
+        
+            if (!hasLetter || !hasCapitalLetter || !isEightCharsLong) {
+              document.getElementById('error-message').textContent =
+                'Password must contain at least 1 letter, 1 capital letter, and be 8 characters long.';
+              return;
+            }
+        
+            if (password !== confirmPassword) {
+              document.getElementById('error-message').textContent =
+                'Passwords do not match.';
+              return;
+            }
+            // Validate USN
+            var usn = document.getElementById('usn').value;
+              var isUSNValid = /^1BM.{7}$/.test(usn);
+
+              if (!isUSNValid) {
+            document.getElementById('error-message').textContent =
+              'USN must start with "1BM" and be 10 characters long.';
+            return;
+               }
+        
+            // Submit the form if password is valid
+            this.submit();
+          });
+        </script>
         
         
         <form id="signup-form-admin" method="post" action="index/register">
