@@ -13,7 +13,8 @@ user_route.use(bodyparser.urlencoded({extended:true}));
 const userController = require('../controlller/userController');
 
 user_route.get('/index',auth.islogout,userController.loadRegister);
-user_route.get('/secondpage_admin',auth.islogin,userController.loadsecond);
+user_route.get('/secondpage_admin',auth.islogin,userController.loadsecond_admin);
+user_route.get('/secondpage',auth.islogin,userController.loadsecond);
 user_route.get('/logout',auth.islogin,userController.logout);
 
 // user_route.get('/secondpage_admin',userController.loadsecond);

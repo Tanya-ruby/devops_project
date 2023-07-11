@@ -19,10 +19,21 @@ const loadRegister = async(req,res)=>{
         
     }
 }
-const loadsecond = async(req,res)=>{
+const loadsecond_admin = async(req,res)=>{
     try {
      const {name,usn,section} = await user.findById({_id:req.session.user_id});
      res.render('secondpage_admin',{name,usn,section});
+// comment
+        
+    } catch (error) {
+        console.log(error.message);
+        
+    }
+}
+const loadsecond = async(req,res)=>{
+    try {
+     const {name,usn,section} = await user.findById({_id:req.session.user_id});
+     res.render('secondpage',{name,usn,section});
 // comment
         
     } catch (error) {
@@ -38,8 +49,8 @@ const insertUser = async(req,res)=>{
             email:req.body.email,
             section:req.body.section,
             usn:req.body.usn,
-            isAdmin:true //amshu change this when you add admin functionality , always true
-            pass:spass
+            isAdmin:req.body.isAdmin, //amshu change this when you add admin functionality , always true
+            password:spass
         }
        
         );
@@ -63,10 +74,14 @@ const verifyLogin = async(req,res)=>{
         const UserData = await userModel.findOne({email:email});
         if(UserData){
 
-           const match =  await bcrypt.compare(pass,UserData.pass);
+           const match =  await bcrypt.compare(pass,UserData.password);
             if(match){
                 req.session.user_id= UserData._id;
+                if(UserData.isAdmin)
                 res.redirect('secondpage_admin');
+                else
+                res.redirect('secondpage');
+
                 // res.render('secondpage_admin',{name:UserData.name,usn:UserData.usn,section:UserData.section});
             }
             else {
@@ -90,4 +105,4 @@ const logout = async(req,res)=>{
         
     }
 }
-module.exports = {loadRegister,insertUser,verifyLogin,loadsecond,logout};
+module.exports = {loadRegister,insertUser,verifyLogin,loadsecond,loadsecond_admin,logout};

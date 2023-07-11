@@ -77,7 +77,7 @@
           <input type="password" name="pass" placeholder="Password" id="password" class="ppp" required>
           <div class="paslog"><label for="show-password">Show Password</label>
           <input type="checkbox" id="show-password"></div>
-          <input type="submit" value="Login" id="login-btn">
+          <input style="width: 100%;" type="submit" class="signupbutt" value="Login" id="login-btn">
           <div class="altoption">Don't have an account?  
           <input type="button1" class="randbut" value="Signup" onclick="openForm()"></input> </div>
           
@@ -113,6 +113,8 @@
           <input type="email" name="email" placeholder="College Email" id="email1" class="ppp" required>
           <label class="signuplab">USN</label>
           <input type="text" name="usn" placeholder="USN" id="usn" class="ppp" required>
+          <label class="signuplab">Admin ID</label>
+          <input type="text" name="isAdmin" placeholder="Only for admins" id="isAdmin" class="ppp">
           <label class="signuplab">Section</label>
           <input type="text" name="section" placeholder="Section" id="email1" class="ppp" required>
           <label class="signuplab">Enter your password</label>
@@ -127,7 +129,7 @@
             <label for="show-password2">Show Password</label>
             <input type="checkbox" id="show-password2">
           </div>
-          <input type="submit" value="Sign Up" id="signup-btn">
+          <input style="width: 100%;" type="submit" class="signupbutt" value="Sign Up" id="signup-btn">
           <div id="error-message" style="color: red;"></div>
         </form>
         <script>
