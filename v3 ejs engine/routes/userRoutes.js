@@ -17,6 +17,10 @@ user_route.get('/secondpage_admin',auth.islogin,userController.loadsecond_admin)
 user_route.get('/secondpage',auth.islogin,userController.loadsecond);
 user_route.get('/logout',auth.islogin,userController.logout);
 
+// Club Id Routes - 
+
+user_route.get('/events/:eventId', userController.fetchEvents);
+
 // user_route.get('/secondpage_admin',userController.loadsecond);
 
 user_route.post('/index',userController.insertUser);
