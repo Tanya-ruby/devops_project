@@ -8,7 +8,7 @@ password:{type:String,required:true},
 name:{type:String,required:true},
 section:{type:String,required:true},
 isAdmin:{type:String,default:0},
-ObjectId : { type : Array , "default" : [] }
+myEvents: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Events' }]
 });
 
 module.exports = mongoose.model('Users',usersSchema);

@@ -59,6 +59,13 @@ const optionsList = document.getElementById('optionsList');
 const cardList = document.querySelector('.card-list');
 // const addButton = document.getElementById('add-card');
 
+const cc = document.querySelector('.card-list-container')
+const dragging = (e) => {
+  cc.scrollLeft = e.pageX;
+}
+
+cc.addEventListener("mousemove", dragging);
+
 
 addEventBtn.addEventListener('click', function(event) {
   if(flag==1) {

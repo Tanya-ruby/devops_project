@@ -352,12 +352,26 @@ nav {
 
 
 
- 
+.ok2 {
+  width: 100%;
+  margin-top: 75px;
+}
 
-.card-list-container {
+/* .card-list-container {
   overflow-x: auto;
   white-space: nowrap;
+  overflow: hidden;
+} */
+
+.card-list-container {
+  overflow-x: scroll;
+  white-space: nowrap;
   /* padding-top: 150px; */
+  width: 100%;
+  position: relative;
+  left: 50%;
+  transform: translateX(-50%);
+  overflow: hidden;
 }
 
 .card-list {
@@ -365,14 +379,15 @@ nav {
 }
 
 .cardd {
-  width: 250px;
-  height: 200px;
+  width: 400px;
+  height: 300px;
   margin: 10px;
   position: relative;
   perspective: 1000px;
   border-radius: 10px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
   transition: transform 0.6s ease;
+  background-color: #00BFFF;
 }
 
 .card-front, .card-back {
@@ -381,10 +396,11 @@ nav {
   position: absolute;
   backface-visibility: hidden;
   border-radius: 10px;
+  background-color: #BCEDF6;
 }
 
 .card-front {
-  background-color: #fff;
+  /* background-color: #BCEDF6; */
   display: flex;
   justify-content: center;
   align-items: center;
@@ -396,7 +412,7 @@ nav {
 }
 
 .card-back {
-  background-color: #f2f2f2;
+  /* background-color: #f2f2f2; */
   transform: rotateY(180deg);
   display: flex;
   justify-content: center;
