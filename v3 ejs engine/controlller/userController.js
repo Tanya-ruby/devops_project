@@ -1,8 +1,10 @@
 const userModel = require('../models/userModel');
-const user = require('../models/userModel');
+//const user = require('../models/userModel');
 
 const bcrypt = require('bcrypt');
 
+const user = userModel.Users;
+const events = userModel.Events;
 
 const securePass = async(password)=>{
     const spass = await bcrypt.hash(password,10);
@@ -49,12 +51,12 @@ const insertUser = async(req,res)=>{
             email:req.body.email,
             section:req.body.section,
             usn:req.body.usn,
-            isAdmin:req.body.isAdmin, //amshu change this when you add admin functionality , always true
+            isAdmin:req.body.isAdmin, 
             password:spass
         }
        
         );
-        const checkUser = await userModel.findOne({email:User.email});
+        const checkUser = await user.findOne({email:User.email});
         if(checkUser)res.render('index',{message:"User already exists! Please login to continue"});
         else{
          const userData= await User.save();
@@ -71,7 +73,7 @@ const verifyLogin = async(req,res)=>{
     try {
         const email = req.body.email;
         const pass = req.body.pass;
-        const UserData = await userModel.findOne({email:email});
+        const UserData = await user.findOne({email:email});
         if(UserData){
 
            const match =  await bcrypt.compare(pass,UserData.password);
@@ -105,4 +107,38 @@ const logout = async(req,res)=>{
         
     }
 }
-module.exports = {loadRegister,insertUser,verifyLogin,loadsecond,loadsecond_admin,logout};
+
+const fetchEvents = async(req,res)=>{
+    try {
+        let eventLists;
+        let isAdmin;
+        const clubId = req.params.eventId;
+        const userId = req.session.user_id;
+        if (userId === undefined) {
+            isAdmin = false;
+        } else {
+            const UserTable = await user.findById({_id:req.session.user_id});
+            isAdmin = UserTable.isAdmin;
+        }
+
+        // Retrieve all events associated with an club / event id.
+        const clubEvents = await events.find()
+                                .where("eventId")
+                                .equals(clubId)
+                                .select("events")
+                                .exec();
+        clubEvents.forEach(event => {
+            eventLists = event["events"];
+        });
+        res.render(clubId, {
+            isUserAdmin: isAdmin,
+            eventList: eventLists,
+        });
+    } catch (error) {
+        console.log(error); 
+    }
+}
+
+
+
+module.exports = {loadRegister,insertUser,verifyLogin,loadsecond,loadsecond_admin,logout,fetchEvents};

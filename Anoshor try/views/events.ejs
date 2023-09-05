@@ -1,0 +1,39 @@
+<%- include("header") -%>
+
+<div class="ok card-deck border-dark" id="card2">
+  <div class="card">
+    <div class="card-header">
+      <h3>Upcoming Events</h3>
+    </div>
+    <div class="card-body" style="height: 200px; overflow-y: scroll; background-color: #f5f9fa; filter: brightness(95%);">
+      <h2></h2>
+      <ul class="list-group" id="optionsList">
+        <% events.forEach(function(event) { %>
+        <li class="list-group-item" data-event-id="<%= event._id %>" onclick="selectOption(this)"><%= event.title %></li>
+        <% }); %>
+      </ul>
+    </div>
+    <div class="card-footer">
+      <form action="/users/addEvent" method="post">
+        <button class="btn btn-primary" id="selectBtn" disabled type="submit">Sign Up</button>
+        <input type="hidden" id="selectedEventId" name="eventId">
+      </form>
+    </div>
+  </div>  
+</div>
+
+<script>
+  function selectOption(element) {
+    var optionsList = document.querySelectorAll("#optionsList li");
+    optionsList.forEach(function (item) {
+      item.classList.remove("active");
+    });
+    element.classList.add("active");
+
+    var eventId = element.getAttribute("data-event-id");
+    document.getElementById("selectedEventId").value = eventId;
+
+    var selectBtn = document.getElementById("selectBtn");
+    selectBtn.disabled = false;
+  }
+</script>
