@@ -1,3 +1,3 @@
 # devops_project
 
-![GitHub Workflow Status](https://img.shields.io/github/workflow/status/Anoshor/devops_project/node.js?label=build)
+[![Node.js CI](https://github.com/Anoshor/devops_project/actions/workflows/node.js.yml/badge.svg?branch=main)](https://github.com/Tanya-ruby/devops_project/actions/workflows/node.js.yml)
